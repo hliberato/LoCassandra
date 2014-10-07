@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:decorate template="template.xhtml">
+        <ui:define name="centro">
+        <br/>
+	        <p:fieldset legend="Título: #{buscaFilmeBean.dvdSelecionado.title}" style="width:800">
+		        <h:panelGrid columns="3" cellpadding="25">
+		            		            
+		            <h:panelGrid columns="1" cellpadding="5" style="font-size: 20">
+		            	<p:graphicImage value="resources/img/filme.jpg" width="200"/>
+			            <h:outputText value="Gênero: #{buscaFilmeBean.dvdSelecionado.genre}" />
+			            <h:outputText value="Estúdio: #{buscaFilmeBean.dvdSelecionado.studio}" />
+			            <h:outputText value="Ano: #{buscaFilmeBean.dvdSelecionado.year}" />
+		            </h:panelGrid>
+		        
+		        <p:dataList value="#{buscaFilmeBean.dvdSelecionado.actors}" var="ator" type="definition">
+			        <f:facet name="header">
+			            Atores neste filme:
+			           <br/>(Busca Cassandra MySQL)
+			        </f:facet>
+			        <center>
+			        <h:form>			        
+				        <p:commandLink action="#{buscaAtorBean.buscarAtoresCassandra}">
+				        	<h:outputText value="##{ator.first_name} " />			
+				        	<h:outputText value="#{ator.last_name}"/>
+				        	<h:inputHidden value="#{ator.actor_id}" binding="#{buscaAtorBean.actor_id}"/>
+				        	<h:inputHidden value="#{ator.first_name}" binding="#{buscaAtorBean.first_name}"/>
+				        	<h:inputHidden value="#{ator.last_name}" binding="#{buscaAtorBean.last_name}"/>				        	
+				        </p:commandLink>
+			        </h:form>
+			        </center>
+			    </p:dataList>
+			    
+			    		        <p:dataList value="#{buscaFilmeBean.dvdSelecionado.actors}" var="ator" type="definition">
+			        <f:facet name="header">
+			            Atores neste filme:
+			           <br/>(Busca Cassandra)
+			        </f:facet>
+			        <center>
+			        <h:form>			        
+				        <p:commandLink action="#{buscaAtorBean.buscarAtores}">
+				        	<h:outputText value="##{ator.first_name} " />			
+				        	<h:outputText value="#{ator.last_name}"/>
+				        	<h:inputHidden value="#{ator.actor_id}" binding="#{buscaAtorBean.actor_id}"/>
+				        	<h:inputHidden value="#{ator.first_name}" binding="#{buscaAtorBean.first_name}"/>
+				        	<h:inputHidden value="#{ator.last_name}" binding="#{buscaAtorBean.last_name}"/>				        	
+				        </p:commandLink>
+			        </h:form>
+			        </center>
+			    </p:dataList>
+			    
+			    
+			    </h:panelGrid>
+		    </p:fieldset>
+        </ui:define>
+    </ui:decorate>
+</html>

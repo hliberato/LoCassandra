@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:decorate template="template.xhtml">
+        <ui:define name="centro">
+        <br/><br/><br/>
+			<h:form>
+			    <p:growl id="msgs" showDetail="true" />			 
+			    <h:panelGrid columns="2" cellpadding="5">
+					<p:inputText size="60" value="#{buscaFilmeBean.parametroBusca}"/>
+			 	</h:panelGrid>
+			    <p:commandButton value="BUSCAR FILME" icon="ui-icon-search" action="#{buscaFilmeBean.buscarFilme}"/>
+			</h:form>
+        </ui:define>
+    </ui:decorate>
+</html>
